@@ -5,7 +5,6 @@
   const navToggle = document.getElementById('navToggle');
   const nav = document.getElementById('nav');
   const navLinks = document.querySelectorAll('.nav__link');
-  const navActionLinks = document.querySelectorAll('.nav__actions .btn');
 
   function closeNav() {
     navToggle.classList.remove('active');
@@ -39,9 +38,38 @@
     link.addEventListener('click', closeNav);
   });
 
-  navActionLinks.forEach(function (link) {
-    link.addEventListener('click', closeNav);
+  // Scroll CTA buttons to hero enquiry form
+  const formScrollLinks = document.querySelectorAll('.js-scroll-to-form');
+  const enquiryFormCard = document.getElementById('enquiry-form');
+  const nameInput = document.getElementById('name');
+
+  function scrollToEnquiryForm() {
+    if (!enquiryFormCard) return;
+
+    enquiryFormCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    window.setTimeout(function () {
+      enquiryFormCard.classList.add('hero__form-card--highlight');
+      if (nameInput && !nameInput.disabled) {
+        nameInput.focus({ preventScroll: true });
+      }
+      window.setTimeout(function () {
+        enquiryFormCard.classList.remove('hero__form-card--highlight');
+      }, 2000);
+    }, 500);
+  }
+
+  formScrollLinks.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      closeNav();
+      scrollToEnquiryForm();
+    });
   });
+
+  if (window.location.hash === '#enquiry-form') {
+    window.setTimeout(scrollToEnquiryForm, 300);
+  }
 
   // Scroll reveal animation
   const revealElements = document.querySelectorAll(

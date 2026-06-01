@@ -499,6 +499,13 @@ ul {
   padding: 36px 32px;
   text-align: left;
   border-top: 3px solid var(--green);
+  scroll-margin-top: calc(var(--header-height) + 24px);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.hero__form-card--highlight {
+  box-shadow: 0 0 0 4px rgba(43, 167, 69, 0.25), var(--shadow-lg);
+  transform: translateY(-2px);
 }
 
 .hero-form__title {
