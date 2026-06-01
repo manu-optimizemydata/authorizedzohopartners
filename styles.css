@@ -119,6 +119,23 @@ ul {
   transform: translateY(-1px);
 }
 
+.btn--text {
+  background: transparent;
+  border-color: transparent;
+  color: var(--green-dark);
+  padding: 10px 0;
+  min-height: auto;
+  font-size: 14px;
+  font-weight: 600;
+  width: auto;
+}
+
+.btn--text:hover {
+  color: var(--orange);
+  transform: none;
+  box-shadow: none;
+}
+
 .btn--large {
   padding: 16px 36px;
   font-size: 16px;
@@ -472,6 +489,36 @@ ul {
 
 .hero__desc--secondary {
   font-size: 16px;
+}
+
+.hero__card-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero__read-more {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 4px 0 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-dark);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero__read-more:hover {
+  color: var(--orange);
+}
+
+.badge--hero {
+  margin-bottom: 12px;
 }
 
 .hero__checklist {
@@ -1053,6 +1100,81 @@ ul {
   color: var(--dark);
 }
 
+.service-card__toggle {
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 16px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-dark);
+  background: var(--green-light);
+  border: 1px solid rgba(43, 167, 69, 0.25);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.service-card__toggle:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+.nav__item--mobile {
+  display: none;
+}
+
+.faq-show-more {
+  display: none;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto 0;
+  padding: 12px 20px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-dark);
+  background: var(--white);
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.faq-show-more:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+.mobile-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  padding: 12px 16px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.mobile-cta-bar:not([hidden]) {
+  display: block;
+}
+
+.mobile-cta-bar .btn {
+  min-height: 48px;
+  font-size: 15px;
+}
+
+body.has-mobile-cta {
+  padding-bottom: 80px;
+}
+
 /* ========================================
    Why Us
    ======================================== */
@@ -1501,6 +1623,11 @@ ul {
   transform: translateY(0);
 }
 
+/* Visibility utilities (mobile toggles at 768px) */
+.mobile-only {
+  display: none;
+}
+
 /* ========================================
    Responsive
    ======================================== */
@@ -1658,65 +1785,148 @@ ul {
   }
 
   .section {
-    padding: 56px 0;
+    padding: 48px 0;
   }
 
   .section__header {
-    margin-bottom: 36px;
+    margin-bottom: 28px;
   }
 
   .section__title {
-    font-size: clamp(24px, 6vw, 32px);
+    font-size: clamp(22px, 5.5vw, 30px);
+    line-height: 1.25;
   }
 
   .section__lead {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.55;
   }
 
-  /* Hero — content first, then form */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  span.mobile-only.badge,
+  .badge.mobile-only {
+    display: inline-block;
+  }
+
+  .btn.mobile-only,
+  .hero__read-more.mobile-only {
+    display: inline-flex;
+  }
+
+  .hero__read-more.mobile-only {
+    display: inline-block;
+  }
+
+  /* Hero — form first, shorter copy */
   .hero {
-    padding: calc(var(--header-height) + 32px) 0 56px;
+    padding: calc(var(--header-height) + 20px) 0 48px;
   }
 
   .hero__inner {
-    gap: 32px;
+    gap: 24px;
+  }
+
+  .hero__visual {
+    order: -1;
+    opacity: 1;
   }
 
   .hero__content {
     order: 1;
-  }
-
-  .hero__visual {
-    order: 2;
-    opacity: 1;
+    text-align: center;
   }
 
   .hero__title {
-    font-size: clamp(26px, 7vw, 36px);
-    margin-bottom: 16px;
-  }
-
-  .hero__eyebrow {
-    font-size: 14px;
+    font-size: clamp(24px, 6.5vw, 32px);
     margin-bottom: 12px;
   }
 
-  .hero__desc {
+  .hero__desc,
+  .hero__desc--mobile {
     font-size: 15px;
-    line-height: 1.65;
+    line-height: 1.55;
+    margin-bottom: 12px;
   }
 
-  .hero__desc--secondary {
-    font-size: 14px;
+  .hero__expandable .hero__desc {
+    margin-bottom: 0;
   }
 
   .hero__actions {
-    margin-top: 4px;
+    margin-top: 8px;
+    align-items: center;
+  }
+
+  .hero__actions .btn--primary {
+    width: 100%;
   }
 
   .hero__form-card {
-    padding: 28px 20px;
+    padding: 20px 16px;
     border-radius: var(--radius);
+  }
+
+  .hero__card-brand {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+
+  .hero__card-brand .hero__logo-img {
+    width: 88px;
+    margin: 0;
+  }
+
+  .hero__card-brand .hero__partner-badge {
+    height: 32px;
+    margin: 0;
+  }
+
+  .hero-form__title {
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+
+  .hero__form-card .hero-form__title {
+    text-align: left;
+  }
+
+  .hero-form {
+    gap: 12px;
+  }
+
+  .form-note {
+    font-size: 12px;
+  }
+
+  .problems-closing {
+    font-size: 15px;
+    margin-top: 20px;
+  }
+
+  .why-zoho__highlight {
+    font-size: 16px;
+    padding: 18px;
+  }
+
+  .cta__desc {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .cta__visual {
+    display: none;
   }
 
   .form-input,
@@ -1730,15 +1940,89 @@ ul {
   }
 
   .problems-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .problem-card--wide {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 
   .problem-card {
-    padding: 20px;
+    padding: 14px 12px;
+  }
+
+  .problem-card p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .problem-card__icon {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  .nav__item--desktop {
+    display: none;
+  }
+
+  .nav__item--mobile {
+    display: list-item;
+  }
+
+  .service-card:not(.service-card--expanded) .service-card__extra {
+    display: none;
+  }
+
+  .service-card__toggle.mobile-only {
+    display: block;
+  }
+
+  .faq-list:not(.faq-list--expanded) .faq-item--more {
+    display: none;
+  }
+
+  .faq-show-more.mobile-only {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #faq .container {
+    text-align: center;
+  }
+
+  #faq .faq-list {
+    text-align: left;
+  }
+
+  .faq-list--expanded + .faq-show-more {
+    display: none;
+  }
+
+  .industry-card {
+    padding: 18px 16px;
+  }
+
+  .industry-card__desc {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .industries-grid,
+  .industries-grid--six {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .industry-card__number {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .industry-card__title {
+    font-size: 15px;
+    margin-bottom: 6px;
   }
 
   .why-zoho__highlight {
@@ -1752,11 +2036,11 @@ ul {
   }
 
   .service-card {
-    padding: 28px 24px;
+    padding: 20px 16px;
   }
 
   .service-card--flagship {
-    padding: 28px 24px;
+    padding: 20px 16px;
   }
 
   .services-flagship__label::before,
@@ -1768,15 +2052,6 @@ ul {
 
   .service-card__benefits--cols {
     grid-template-columns: 1fr;
-  }
-
-  .industries-grid,
-  .industries-grid--six {
-    grid-template-columns: 1fr;
-  }
-
-  .industry-card {
-    padding: 24px;
   }
 
   .why-us__highlight-box {
@@ -1867,25 +2142,16 @@ ul {
   .hero__actions .btn {
     width: 100%;
   }
-}
 
-@media (max-width: 768px) {
-  .hero__logo-img {
-    width: 140px;
-  }
-
-  .hero__partner-badge {
-    height: 40px;
+  .hero__actions .btn--text {
+    width: auto;
+    align-self: center;
   }
 }
 
 @media (max-width: 480px) {
-  .hero__logo-img {
-    width: 120px;
-  }
-
-  .hero__partner-badge {
-    height: 36px;
+  .section {
+    padding: 40px 0;
   }
 
   .brand-logo__text {

@@ -25,14 +25,15 @@
       </a>
       <nav class="nav" id="nav" aria-label="Main navigation">
         <ul class="nav__list">
-          <li class="nav__item"><a href="#hero" class="nav__link">Home</a></li>
-          <li class="nav__item"><a href="#problems" class="nav__link">Problems</a></li>
-          <li class="nav__item"><a href="#why-zoho" class="nav__link">Why Zoho</a></li>
+          <li class="nav__item nav__item--desktop"><a href="#hero" class="nav__link">Home</a></li>
+          <li class="nav__item nav__item--desktop"><a href="#problems" class="nav__link">Problems</a></li>
+          <li class="nav__item nav__item--desktop"><a href="#why-zoho" class="nav__link">Why Zoho</a></li>
           <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
-          <li class="nav__item"><a href="#industries" class="nav__link">Industries</a></li>
-          <li class="nav__item"><a href="#why-us" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#framework" class="nav__link">Process</a></li>
-          <li class="nav__item"><a href="#faq" class="nav__link">FAQ</a></li>
+          <li class="nav__item nav__item--desktop"><a href="#industries" class="nav__link">Industries</a></li>
+          <li class="nav__item nav__item--desktop"><a href="#why-us" class="nav__link">About</a></li>
+          <li class="nav__item nav__item--desktop"><a href="#framework" class="nav__link">Process</a></li>
+          <li class="nav__item nav__item--desktop"><a href="#faq" class="nav__link">FAQ</a></li>
+          <li class="nav__item nav__item--mobile"><a href="#enquiry-form" class="nav__link js-scroll-to-form">Contact</a></li>
         </ul>
         <div class="nav__actions">
           <a href="#enquiry-form" class="btn btn--secondary btn--nav js-scroll-to-form">Request Demo</a>
@@ -52,30 +53,43 @@
     <div class="hero__bg-pattern" aria-hidden="true"></div>
     <div class="container hero__inner">
       <div class="hero__content">
-        <p class="hero__subtitle">Business Automation &amp; Zoho Consulting Services</p>
-        <p class="hero__eyebrow">Authorized Zoho Partner Helping Businesses Scale Through Automation</p>
+        <span class="badge badge--hero mobile-only">Authorized Zoho Partner</span>
+        <p class="hero__subtitle hide-mobile">Business Automation &amp; Zoho Consulting Services</p>
+        <p class="hero__eyebrow hide-mobile">Authorized Zoho Partner Helping Businesses Scale Through Automation</p>
         <h1 class="hero__title">Transform Sales, Finance, Inventory &amp; Operations with <span class="text-orange">Zoho</span></h1>
-        <p class="hero__desc">
+        <p class="hero__desc hero__desc--mobile mobile-only">
+          Streamline sales, finance, inventory &amp; operations on one platform—with expert Zoho implementation and support.
+        </p>
+        <p class="hero__desc hide-mobile">
           Growing businesses often struggle with disconnected systems, manual processes, poor visibility, and missed opportunities.
         </p>
-        <p class="hero__desc hero__desc--secondary">
-          At Optimize My Data, we help organizations streamline and automate their business operations using Zoho's integrated suite of applications. From CRM and accounting to inventory management, workflow automation, analytics, and customer support, we design solutions that help businesses operate more efficiently and grow faster.
-        </p>
-        <p class="hero__desc hero__desc--secondary">
-          As an Authorized Zoho Partner, we provide consulting, implementation, migration, customization, training, and ongoing support to ensure your technology works for your business—not against it.
-        </p>
+        <div class="hero__more hide-mobile" id="heroMoreDesktop">
+          <p class="hero__desc hero__desc--secondary">
+            At Optimize My Data, we help organizations streamline and automate their business operations using Zoho's integrated suite of applications. From CRM and accounting to inventory management, workflow automation, analytics, and customer support, we design solutions that help businesses operate more efficiently and grow faster.
+          </p>
+          <p class="hero__desc hero__desc--secondary">
+            As an Authorized Zoho Partner, we provide consulting, implementation, migration, customization, training, and ongoing support to ensure your technology works for your business—not against it.
+          </p>
+        </div>
+        <div class="hero__expandable mobile-only" id="heroExpandable" hidden>
+          <p class="hero__desc">Growing businesses often struggle with disconnected systems, manual processes, and poor visibility. We help you centralize everything on Zoho—from CRM and accounting to inventory, automation, and support.</p>
+        </div>
+        <button type="button" class="hero__read-more mobile-only" id="heroReadMore" aria-expanded="false">Read more</button>
         <div class="btn-group hero__actions">
           <a href="#enquiry-form" class="btn btn--primary js-scroll-to-form">Book a Free Consultation</a>
-          <a href="#enquiry-form" class="btn btn--secondary js-scroll-to-form">Request a Zoho Demo</a>
+          <a href="#enquiry-form" class="btn btn--secondary js-scroll-to-form hide-mobile">Request a Zoho Demo</a>
+          <a href="#enquiry-form" class="btn btn--text mobile-only js-scroll-to-form">Or request a demo</a>
         </div>
       </div>
       <div class="hero__visual">
         <div class="hero__card hero__form-card" id="enquiry-form">
-          <img src="assets/logo.png" alt="Optimize My Data Logo" class="hero__logo-img">
-          <img src="assets/zoho-authorized-partner.png" alt="Zoho Authorized Partner" class="hero__partner-badge">
-          <p class="hero__tagline">Data is everything</p>
+          <div class="hero__card-brand">
+            <img src="assets/logo.png" alt="Optimize My Data Logo" class="hero__logo-img">
+            <img src="assets/zoho-authorized-partner.png" alt="Zoho Authorized Partner" class="hero__partner-badge">
+          </div>
+          <p class="hero__tagline hide-mobile">Data is everything</p>
           <h2 class="hero-form__title">Get in Touch</h2>
-          <p class="hero-form__subtitle">Speak with a Zoho expert today</p>
+          <p class="hero-form__subtitle hide-mobile">Speak with a Zoho expert today</p>
           <form class="hero-form" id="heroForm" novalidate>
             <div class="form-feedback" id="formFeedback" role="alert" aria-live="polite" hidden></div>
             <div class="form-fields" id="formFields">
@@ -158,9 +172,10 @@
     <div class="container">
       <div class="section__header">
         <h2 class="section__title">What Is Zoho and Why Do Businesses Choose It?</h2>
-        <p class="section__lead">
+        <p class="section__lead hide-mobile">
           Zoho is a comprehensive business operating system that combines customer relationship management (CRM), accounting, inventory management, marketing automation, project management, customer support, analytics, and collaboration tools within a single platform.
         </p>
+        <p class="section__lead mobile-only">CRM, accounting, inventory, marketing, and support—unified in one cloud platform.</p>
       </div>
       <div class="why-zoho__grid">
         <div class="why-zoho__intro">
@@ -176,7 +191,7 @@
           <li>Scalability for growing businesses</li>
         </ul>
       </div>
-      <p class="why-zoho__closing">
+      <p class="why-zoho__closing hide-mobile">
         Whether you are a startup, SME, or established organization, Zoho provides the flexibility to adapt to your processes while supporting future growth.
       </p>
     </div>
@@ -197,17 +212,20 @@
           </div>
           <h3 class="service-card__title">Zoho CRM Implementation</h3>
           <p class="service-card__desc">Manage leads, automate sales processes, track opportunities, and improve conversion rates.</p>
-          <h4 class="service-card__benefits-title">Services Include</h4>
-          <ul class="service-card__benefits">
-            <li>CRM setup and configuration</li>
-            <li>Lead management workflows</li>
-            <li>Sales pipeline automation</li>
-            <li>WhatsApp integration</li>
-            <li>Email automation</li>
-            <li>Dashboard and reporting setup</li>
-            <li>User training</li>
-          </ul>
-          <p class="service-card__ideal"><strong>Ideal for:</strong> Sales teams, consultants, healthcare providers, educational institutions, manufacturers, and service businesses.</p>
+          <div class="service-card__extra">
+            <h4 class="service-card__benefits-title">Services Include</h4>
+            <ul class="service-card__benefits">
+              <li>CRM setup and configuration</li>
+              <li>Lead management workflows</li>
+              <li>Sales pipeline automation</li>
+              <li>WhatsApp integration</li>
+              <li>Email automation</li>
+              <li>Dashboard and reporting setup</li>
+              <li>User training</li>
+            </ul>
+            <p class="service-card__ideal"><strong>Ideal for:</strong> Sales teams, consultants, healthcare providers, educational institutions, manufacturers, and service businesses.</p>
+          </div>
+          <button type="button" class="service-card__toggle mobile-only" aria-expanded="false">View details</button>
         </article>
 
         <article class="service-card" id="service-books">
@@ -216,17 +234,20 @@
           </div>
           <h3 class="service-card__title">Zoho Books Implementation &amp; Migration</h3>
           <p class="service-card__desc">Modernize accounting operations and gain real-time financial visibility.</p>
-          <h4 class="service-card__benefits-title">Services Include</h4>
-          <ul class="service-card__benefits">
-            <li>Zoho Books implementation</li>
-            <li>Tally to Zoho Books migration</li>
-            <li>GST configuration</li>
-            <li>Automated invoicing</li>
-            <li>Vendor and customer management</li>
-            <li>Financial reporting</li>
-            <li>Bank integrations</li>
-          </ul>
-          <p class="service-card__ideal"><strong>Ideal for:</strong> SMEs looking to move from spreadsheet-based or legacy accounting systems.</p>
+          <div class="service-card__extra">
+            <h4 class="service-card__benefits-title">Services Include</h4>
+            <ul class="service-card__benefits">
+              <li>Zoho Books implementation</li>
+              <li>Tally to Zoho Books migration</li>
+              <li>GST configuration</li>
+              <li>Automated invoicing</li>
+              <li>Vendor and customer management</li>
+              <li>Financial reporting</li>
+              <li>Bank integrations</li>
+            </ul>
+            <p class="service-card__ideal"><strong>Ideal for:</strong> SMEs looking to move from spreadsheet-based or legacy accounting systems.</p>
+          </div>
+          <button type="button" class="service-card__toggle mobile-only" aria-expanded="false">View details</button>
         </article>
 
         <article class="service-card" id="service-inventory">
@@ -235,17 +256,20 @@
           </div>
           <h3 class="service-card__title">Zoho Inventory Implementation</h3>
           <p class="service-card__desc">Gain control over stock, purchasing, order management, and fulfillment.</p>
-          <h4 class="service-card__benefits-title">Services Include</h4>
-          <ul class="service-card__benefits">
-            <li>Inventory setup</li>
-            <li>Warehouse management</li>
-            <li>Purchase order automation</li>
-            <li>Sales order workflows</li>
-            <li>E-commerce integrations</li>
-            <li>Barcode and stock tracking</li>
-            <li>Inventory reporting</li>
-          </ul>
-          <p class="service-card__ideal"><strong>Ideal for:</strong> Manufacturers, distributors, wholesalers, retailers, and e-commerce businesses.</p>
+          <div class="service-card__extra">
+            <h4 class="service-card__benefits-title">Services Include</h4>
+            <ul class="service-card__benefits">
+              <li>Inventory setup</li>
+              <li>Warehouse management</li>
+              <li>Purchase order automation</li>
+              <li>Sales order workflows</li>
+              <li>E-commerce integrations</li>
+              <li>Barcode and stock tracking</li>
+              <li>Inventory reporting</li>
+            </ul>
+            <p class="service-card__ideal"><strong>Ideal for:</strong> Manufacturers, distributors, wholesalers, retailers, and e-commerce businesses.</p>
+          </div>
+          <button type="button" class="service-card__toggle mobile-only" aria-expanded="false">View details</button>
         </article>
 
         <article class="service-card service-card--one" id="service-one">
@@ -254,17 +278,20 @@
           </div>
           <h3 class="service-card__title">Zoho One Consulting</h3>
           <p class="service-card__desc">Connect your entire organization on a single operating system.</p>
-          <h4 class="service-card__benefits-title">Zoho One Includes Applications For</h4>
-          <ul class="service-card__benefits service-card__benefits--cols">
-            <li>Sales</li>
-            <li>Marketing</li>
-            <li>Finance</li>
-            <li>Human Resources</li>
-            <li>Operations</li>
-            <li>Customer Support</li>
-            <li>Business Intelligence</li>
-          </ul>
-          <p class="service-card__desc service-card__desc--emphasis">Our consultants help organizations design a connected ecosystem that eliminates silos and improves operational efficiency.</p>
+          <div class="service-card__extra">
+            <h4 class="service-card__benefits-title">Zoho One Includes Applications For</h4>
+            <ul class="service-card__benefits service-card__benefits--cols">
+              <li>Sales</li>
+              <li>Marketing</li>
+              <li>Finance</li>
+              <li>Human Resources</li>
+              <li>Operations</li>
+              <li>Customer Support</li>
+              <li>Business Intelligence</li>
+            </ul>
+            <p class="service-card__desc service-card__desc--emphasis">Our consultants help organizations design a connected ecosystem that eliminates silos and improves operational efficiency.</p>
+          </div>
+          <button type="button" class="service-card__toggle mobile-only" aria-expanded="false">View details</button>
         </article>
 
       </div>
@@ -281,32 +308,38 @@
         <article class="industry-card">
           <div class="industry-card__number">01</div>
           <h3 class="industry-card__title">Manufacturing</h3>
-          <p class="industry-card__desc">Improve production visibility, manage inventory, automate sales processes, and gain real-time operational insights.</p>
+          <p class="industry-card__desc hide-mobile">Improve production visibility, manage inventory, automate sales processes, and gain real-time operational insights.</p>
+          <p class="industry-card__desc mobile-only">Production, inventory &amp; sales visibility.</p>
         </article>
         <article class="industry-card">
           <div class="industry-card__number">02</div>
           <h3 class="industry-card__title">Healthcare</h3>
-          <p class="industry-card__desc">Streamline patient inquiry management, appointment workflows, communication, and reporting.</p>
+          <p class="industry-card__desc hide-mobile">Streamline patient inquiry management, appointment workflows, communication, and reporting.</p>
+          <p class="industry-card__desc mobile-only">Patient inquiries, appointments &amp; reporting.</p>
         </article>
         <article class="industry-card">
           <div class="industry-card__number">03</div>
           <h3 class="industry-card__title">Retail &amp; E-Commerce</h3>
-          <p class="industry-card__desc">Manage customers, inventory, orders, accounting, and customer service from a unified platform.</p>
+          <p class="industry-card__desc hide-mobile">Manage customers, inventory, orders, accounting, and customer service from a unified platform.</p>
+          <p class="industry-card__desc mobile-only">Customers, inventory, orders &amp; accounting unified.</p>
         </article>
         <article class="industry-card">
           <div class="industry-card__number">04</div>
           <h3 class="industry-card__title">Education</h3>
-          <p class="industry-card__desc">Simplify admissions, student communication, operations, and reporting.</p>
+          <p class="industry-card__desc hide-mobile">Simplify admissions, student communication, operations, and reporting.</p>
+          <p class="industry-card__desc mobile-only">Admissions, communication &amp; operations.</p>
         </article>
         <article class="industry-card">
           <div class="industry-card__number">05</div>
           <h3 class="industry-card__title">Professional Services</h3>
-          <p class="industry-card__desc">Improve lead tracking, project delivery, invoicing, and customer relationship management.</p>
+          <p class="industry-card__desc hide-mobile">Improve lead tracking, project delivery, invoicing, and customer relationship management.</p>
+          <p class="industry-card__desc mobile-only">Leads, projects, invoicing &amp; CRM.</p>
         </article>
         <article class="industry-card">
           <div class="industry-card__number">06</div>
           <h3 class="industry-card__title">Non-Profit Organizations</h3>
-          <p class="industry-card__desc">Manage donors, campaigns, communications, volunteers, and reporting more effectively.</p>
+          <p class="industry-card__desc hide-mobile">Manage donors, campaigns, communications, volunteers, and reporting more effectively.</p>
+          <p class="industry-card__desc mobile-only">Donors, campaigns, volunteers &amp; reporting.</p>
         </article>
       </div>
     </div>
@@ -317,8 +350,7 @@
     <div class="container">
       <div class="section__header section__header--center">
         <h2 class="section__title">Why Businesses Work with <span class="text-green">Optimize</span> <span class="text-orange">My Data</span></h2>
-        <p class="section__lead">Technology implementation is only successful when it aligns with business objectives.</p>
-        <p class="section__lead">Our approach combines consulting expertise with hands-on implementation experience.</p>
+        <p class="section__lead">Technology implementation is only successful when it aligns with business objectives. Our approach combines consulting expertise with hands-on implementation experience.</p>
       </div>
       <div class="why-us__grid">
         <div class="why-us__content">
@@ -426,14 +458,14 @@
           </div>
         </details>
 
-        <details class="faq-item">
+        <details class="faq-item faq-item--more">
           <summary class="faq-item__question">Which Zoho applications are best for growing businesses?</summary>
           <div class="faq-item__answer">
             <p>Many organizations begin with Zoho CRM, Zoho Books, and Zoho Inventory before expanding into Zoho One for a fully integrated business ecosystem.</p>
           </div>
         </details>
 
-        <details class="faq-item">
+        <details class="faq-item faq-item--more">
           <summary class="faq-item__question">Do you provide training and support?</summary>
           <div class="faq-item__answer">
             <p>Yes. We provide onboarding, employee training, documentation, and ongoing support services.</p>
@@ -441,6 +473,7 @@
         </details>
 
       </div>
+      <button type="button" class="faq-show-more mobile-only" id="faqShowMore" aria-expanded="false">Show all questions</button>
     </div>
   </section>
 
@@ -450,11 +483,12 @@
       <div class="cta__inner">
         <div class="cta__content">
           <h2 class="cta__title">Ready to Automate Your Business?</h2>
-          <p class="cta__desc">
+          <p class="cta__desc hide-mobile">
             Whether you are looking to implement Zoho CRM, modernize accounting, improve inventory management, or connect your entire organization through Zoho One, our team can help.
           </p>
-          <h3 class="cta__subtitle">Schedule a Free Business Automation Consultation</h3>
-          <p class="cta__desc">
+          <p class="cta__desc mobile-only">CRM, Books, Inventory, or Zoho One—we plan, implement, and support your rollout.</p>
+          <h3 class="cta__subtitle hide-mobile">Schedule a Free Business Automation Consultation</h3>
+          <p class="cta__desc hide-mobile">
             Discover how automation, process optimization, and the Zoho ecosystem can help your business increase efficiency, improve visibility, and accelerate growth.
           </p>
           <div class="cta__brand">
@@ -531,6 +565,10 @@
       </div>
     </div>
   </footer>
+
+  <aside class="mobile-cta-bar" id="mobileCtaBar" aria-label="Quick contact" hidden>
+    <a href="#enquiry-form" class="btn btn--primary btn--full js-scroll-to-form">Book Free Consultation</a>
+  </aside>
 
   <script src="script.js"></script>
 </body>

@@ -73,6 +73,65 @@
     window.setTimeout(scrollToEnquiryForm, 300);
   }
 
+  // Hero "Read more" on mobile
+  const heroReadMore = document.getElementById('heroReadMore');
+  const heroExpandable = document.getElementById('heroExpandable');
+
+  if (heroReadMore && heroExpandable) {
+    heroReadMore.addEventListener('click', function () {
+      const expanded = heroReadMore.getAttribute('aria-expanded') === 'true';
+      heroReadMore.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      heroExpandable.hidden = expanded;
+      heroReadMore.textContent = expanded ? 'Read more' : 'Read less';
+    });
+  }
+
+  // Service cards — expand details on mobile
+  document.querySelectorAll('.service-card__toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const card = btn.closest('.service-card');
+      if (!card) return;
+      const expanded = card.classList.toggle('service-card--expanded');
+      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      btn.textContent = expanded ? 'Hide details' : 'View details';
+    });
+  });
+
+  // FAQ — show remaining questions on mobile
+  const faqShowMore = document.getElementById('faqShowMore');
+  const faqList = document.querySelector('.faq-list');
+
+  if (faqShowMore && faqList) {
+    faqShowMore.addEventListener('click', function () {
+      faqList.classList.add('faq-list--expanded');
+      faqShowMore.setAttribute('aria-expanded', 'true');
+      faqShowMore.hidden = true;
+    });
+  }
+
+  // Sticky mobile CTA bar after scrolling past hero
+  const mobileCtaBar = document.getElementById('mobileCtaBar');
+  const heroSection = document.getElementById('hero');
+  const mobileMq = window.matchMedia('(max-width: 768px)');
+
+  function updateMobileCtaBar() {
+    if (!mobileCtaBar || !heroSection) return;
+
+    if (!mobileMq.matches) {
+      mobileCtaBar.hidden = true;
+      document.body.classList.remove('has-mobile-cta');
+      return;
+    }
+
+    const pastHero = window.scrollY > heroSection.offsetHeight * 0.5;
+    mobileCtaBar.hidden = !pastHero;
+    document.body.classList.toggle('has-mobile-cta', pastHero);
+  }
+
+  window.addEventListener('scroll', updateMobileCtaBar, { passive: true });
+  mobileMq.addEventListener('change', updateMobileCtaBar);
+  updateMobileCtaBar();
+
   // Scroll reveal animation
   const revealElements = document.querySelectorAll(
     '.section__header, .service-card, .industry-card, .journey-step, .why-zoho__grid, .why-us__grid, .cta__inner, .problem-card, .faq-list'
