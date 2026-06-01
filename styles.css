@@ -291,6 +291,23 @@ ul {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  gap: 16px;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  max-width: min(220px, 52vw);
+}
+
+.header__logo-img {
+  display: block;
+  width: auto;
+  height: 44px;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
 
 /* Brand Logo */
@@ -1836,7 +1853,25 @@ ul {
   }
 }
 
+@media (max-width: 768px) {
+  .header__logo {
+    max-width: min(180px, 48vw);
+  }
+
+  .header__logo-img {
+    height: 36px;
+  }
+}
+
 @media (max-width: 480px) {
+  .header__logo {
+    max-width: min(150px, 44vw);
+  }
+
+  .header__logo-img {
+    height: 32px;
+  }
+
   .brand-logo__text {
     display: none;
   }
