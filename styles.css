@@ -46,6 +46,7 @@ body {
   color: var(--dark);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img {
@@ -89,6 +90,8 @@ ul {
   cursor: pointer;
   transition: all var(--transition);
   white-space: nowrap;
+  text-align: center;
+  min-height: 48px;
 }
 
 .btn--primary {
@@ -481,6 +484,7 @@ ul {
 .hero__visual {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .hero__card {
@@ -501,6 +505,8 @@ ul {
   border-top: 3px solid var(--green);
   scroll-margin-top: calc(var(--header-height) + 24px);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .hero__form-card--highlight {
@@ -1465,14 +1471,87 @@ ul {
 /* ========================================
    Responsive
    ======================================== */
+
+/* Tablet & below — hamburger nav */
+@media (max-width: 1100px) {
+  .nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px 32px;
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
+    box-shadow: var(--shadow-md);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav.active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .nav__link {
+    display: block;
+    padding: 14px 16px;
+    font-size: 16px;
+    white-space: normal;
+  }
+
+  .nav__actions {
+    flex-direction: column;
+    width: 100%;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+    padding-top: 16px;
+    gap: 10px;
+  }
+
+  .nav__actions .btn {
+    width: 100%;
+    min-width: unset;
+    white-space: normal;
+  }
+
+  .nav-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero__inner {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
   }
 
   .hero__visual {
     order: -1;
+    opacity: 1;
   }
 
   .hero__card,
@@ -1489,7 +1568,8 @@ ul {
     gap: 40px;
   }
 
-  .industries-grid {
+  .industries-grid,
+  .industries-grid--six {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1520,7 +1600,9 @@ ul {
     gap: 40px;
   }
 
-  .services-flagship__grid {
+  .services-flagship__grid,
+  .services-grid,
+  .services-grid--four {
     grid-template-columns: 1fr;
   }
 
@@ -1531,70 +1613,83 @@ ul {
   .problem-card--wide {
     grid-column: span 2;
   }
-
-  .nav {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 24px 32px;
-    transform: translateX(100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition);
-    box-shadow: var(--shadow-md);
-    overflow-y: auto;
-  }
-
-  .nav.active {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .nav__list {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-    width: 100%;
-  }
-
-  .nav__link {
-    display: block;
-    padding: 12px 16px;
-    font-size: 15px;
-  }
-
-  .nav__actions {
-    flex-direction: column;
-    width: 100%;
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid var(--border);
-    margin-top: 16px;
-    padding-top: 16px;
-    gap: 10px;
-  }
-
-  .nav__actions .btn {
-    width: 100%;
-    min-width: unset;
-  }
-
-  .nav-toggle {
-    display: flex;
-  }
 }
 
 @media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
   .section {
-    padding: 64px 0;
+    padding: 56px 0;
+  }
+
+  .section__header {
+    margin-bottom: 36px;
+  }
+
+  .section__title {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .section__lead {
+    font-size: 16px;
+  }
+
+  /* Hero — content first, then form */
+  .hero {
+    padding: calc(var(--header-height) + 32px) 0 56px;
+  }
+
+  .hero__inner {
+    gap: 32px;
+  }
+
+  .hero__content {
+    order: 1;
+  }
+
+  .hero__visual {
+    order: 2;
+    opacity: 1;
+  }
+
+  .hero__title {
+    font-size: clamp(26px, 7vw, 36px);
+    margin-bottom: 16px;
+  }
+
+  .hero__eyebrow {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .hero__desc {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .hero__desc--secondary {
+    font-size: 14px;
+  }
+
+  .hero__actions {
+    margin-top: 4px;
+  }
+
+  .hero__form-card {
+    padding: 28px 20px;
+    border-radius: var(--radius);
+  }
+
+  .form-input,
+  .form-textarea {
+    font-size: 16px;
+    padding: 14px;
   }
 
   .checklist {
@@ -1609,8 +1704,26 @@ ul {
     grid-column: span 1;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
+  .problem-card {
+    padding: 20px;
+  }
+
+  .why-zoho__highlight {
+    font-size: 18px;
+    padding: 24px;
+  }
+
+  .why-zoho__closing {
+    font-size: 15px;
+    padding: 20px;
+  }
+
+  .service-card {
+    padding: 28px 24px;
+  }
+
+  .service-card--flagship {
+    padding: 28px 24px;
   }
 
   .services-flagship__label::before,
@@ -1624,25 +1737,33 @@ ul {
     grid-template-columns: 1fr;
   }
 
-  .service-card--flagship {
-    padding: 32px 28px;
-  }
-
   .industries-grid,
   .industries-grid--six {
     grid-template-columns: 1fr;
   }
 
+  .industry-card {
+    padding: 24px;
+  }
+
+  .why-us__highlight-box {
+    padding: 28px 24px;
+  }
+
+  .why-us__quote {
+    font-size: 18px;
+  }
+
   .journey-timeline {
     grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
   }
 
   .journey-step {
     display: flex;
     text-align: left;
-    gap: 20px;
+    gap: 16px;
     padding: 0;
   }
 
@@ -1652,13 +1773,53 @@ ul {
   }
 
   .journey-step__icon {
-    width: 48px;
-    height: 48px;
-    font-size: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  .faq-item__question {
+    padding: 18px 48px 18px 20px;
+    font-size: 15px;
+  }
+
+  .faq-item__answer {
+    padding: 0 20px 18px;
+  }
+
+  .cta__inner {
+    text-align: left;
+  }
+
+  .cta__title {
+    font-size: clamp(24px, 6vw, 30px);
+  }
+
+  .cta__contact {
+    align-items: flex-start;
+  }
+
+  .cta__inner .btn-group {
+    align-items: stretch;
+  }
+
+  .footer {
+    padding-top: 48px;
+  }
+
+  .footer__inner {
+    gap: 32px;
   }
 
   .footer__links {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .btn {
+    white-space: normal;
+    padding: 14px 20px;
+    width: 100%;
   }
 
   .btn-group {
@@ -1670,17 +1831,40 @@ ul {
     width: 100%;
   }
 
-  .cta__inner .btn-group {
-    align-items: center;
+  .hero__actions .btn {
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .footer__links {
-    grid-template-columns: 1fr;
+  .brand-logo__text {
+    display: none;
   }
 
-  .hero__form-card {
-    padding: 28px 20px;
+  .brand-logo__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero__subtitle {
+    font-size: 12px;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .hero-form__title {
+    font-size: 20px;
+  }
+
+  .service-card__title {
+    font-size: 19px;
+  }
+
+  .cta__contact-item {
+    font-size: 14px;
+    word-break: break-word;
   }
 }

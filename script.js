@@ -10,6 +10,7 @@
     navToggle.classList.remove('active');
     nav.classList.remove('active');
     navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
     document.body.style.overflow = '';
   }
 
@@ -30,6 +31,7 @@
     const isOpen = nav.classList.toggle('active');
     navToggle.classList.toggle('active', isOpen);
     navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.classList.toggle('nav-open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
