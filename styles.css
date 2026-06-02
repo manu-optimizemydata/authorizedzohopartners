@@ -1582,10 +1582,26 @@ body.has-mobile-cta {
   padding: 24px 0;
 }
 
+.footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__partner-badge {
+  height: 28px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.95;
+}
+
 .footer__bottom p {
   font-size: 13px;
   text-align: center;
   color: rgba(255, 255, 255, 0.4);
+  flex: 1;
 }
 
 /* ========================================
@@ -2113,6 +2129,22 @@ body.has-mobile-cta {
 
   .footer {
     padding-top: 48px;
+  }
+
+  .footer__partner-badge {
+    height: 24px;
+    max-width: 96px;
+  }
+
+  .footer__bottom-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer__bottom p {
+    text-align: left;
+    flex: 1 1 100%;
+    padding-left: 0;
   }
 
   .footer__inner {
