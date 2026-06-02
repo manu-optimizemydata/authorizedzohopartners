@@ -1645,6 +1645,35 @@ body.has-mobile-cta {
 }
 
 /* ========================================
+   Privacy Policy page
+   ======================================== */
+.privacy__content {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.privacy__content p {
+  margin: 10px 0;
+  color: inherit;
+  line-height: 1.75;
+}
+
+.privacy__content h3 {
+  margin: 22px 0 10px;
+  font-size: 18px;
+  color: inherit;
+}
+
+.privacy__content ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.privacy__content li {
+  margin: 6px 0;
+}
+
+/* ========================================
    Responsive
    ======================================== */
 
