@@ -1771,8 +1771,16 @@ body.has-mobile-cta {
 }
 
 .cs-category-grid--hub {
-  max-width: 520px;
+  max-width: 920px;
   margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  .cs-category-grid--hub {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
 }
 
 .cs-category-card__head {
@@ -1880,6 +1888,11 @@ body.has-mobile-cta {
   border-radius: var(--radius);
   margin-bottom: 0;
   flex-shrink: 0;
+}
+
+.cs-category-card__icon--sm {
+  font-size: 11px;
+  letter-spacing: 0.02em;
 }
 
 .cs-category-card__title {

@@ -26,6 +26,14 @@ app.get('/case-study/epc/solar', (req, res) => {
   res.sendFile(path.join(__dirname, 'case-study', 'epc', 'solar.html'));
 });
 
+app.get('/case-study/travel-tourism', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'travel-tourism.html'));
+});
+
+app.get('/case-study/travel-tourism/luxury-travel', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'travel-tourism', 'luxury-travel.html'));
+});
+
 app.get('/case-study.html', (req, res) => {
   res.redirect(301, '/case-study');
 });
