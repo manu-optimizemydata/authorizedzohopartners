@@ -13,6 +13,23 @@ const SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Optimize My Data Website';
 const LIST_ID = process.env.BREVO_LIST_ID ? Number(process.env.BREVO_LIST_ID) : null;
 
 app.use(express.json({ limit: '32kb' }));
+
+app.get('/case-study', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study.html'));
+});
+
+app.get('/case-study/epc', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'epc.html'));
+});
+
+app.get('/case-study/epc/solar', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'epc', 'solar.html'));
+});
+
+app.get('/case-study.html', (req, res) => {
+  res.redirect(301, '/case-study');
+});
+
 app.use(express.static(path.join(__dirname)));
 
 async function brevoRequest(endpoint, body) {

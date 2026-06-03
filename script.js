@@ -134,7 +134,7 @@
 
   // Scroll reveal animation
   const revealElements = document.querySelectorAll(
-    '.section__header, .service-card, .industry-card, .journey-step, .why-zoho__grid, .why-us__grid, .cta__inner, .problem-card, .faq-list'
+    '.section__header, .service-card, .industry-card, .journey-step, .why-zoho__grid, .why-us__grid, .cta__inner, .problem-card, .faq-list, .case-study-teaser, .cs-section, .cs-quote, .cs-category-grid, .cs-category-list'
   );
 
   revealElements.forEach(function (el) {
