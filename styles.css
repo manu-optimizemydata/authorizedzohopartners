@@ -1770,12 +1770,65 @@ body.has-mobile-cta {
   padding-top: 24px;
 }
 
+.cs-epc-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.cs-epc-image {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.cs-epc-image img {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
+.cs-epc-image--page img {
+  max-width: 240px;
+}
+
+.cs-epc-page-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cs-epc-page-main .section__header {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.case-study-teaser__epc-img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
 .cs-category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
-  max-width: 900px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .cs-category-card {
@@ -2163,6 +2216,26 @@ body.has-mobile-cta {
   .case-study-teaser {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .cs-epc-row,
+  .cs-epc-page-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    justify-items: center;
+  }
+
+  .cs-epc-page-main .section__header {
+    text-align: center;
+  }
+
+  .cs-epc-page-main .cs-back-links {
+    text-align: center;
+  }
+
+  .cs-epc-image img,
+  .cs-epc-image--page img {
+    max-width: 220px;
   }
 
   .cs-hero__inner {
