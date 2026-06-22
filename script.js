@@ -253,4 +253,81 @@
       }
     });
   }
+
+  // Paid consultation booking form
+  const consultationForm = document.getElementById('consultationForm');
+  const consultationFeedback = document.getElementById('consultationFeedback');
+  const consultationFields = document.getElementById('consultationFields');
+  const consultationSubmitBtn = document.getElementById('consultationSubmitBtn');
+
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      if (consultationFeedback) {
+        consultationFeedback.hidden = true;
+        consultationFeedback.textContent = '';
+        consultationFeedback.className = 'form-feedback';
+      }
+
+      if (!consultationForm.checkValidity()) {
+        consultationForm.reportValidity();
+        return;
+      }
+
+      const payload = {
+        name: document.getElementById('consultName').value.trim(),
+        company: document.getElementById('consultCompany').value.trim(),
+        email: document.getElementById('consultEmail').value.trim(),
+        phone: document.getElementById('consultPhone').value.trim(),
+        requirement: document.getElementById('consultRequirement').value.trim(),
+        currentTools: document.getElementById('consultTools').value.trim(),
+        preferredDate: document.getElementById('consultDate').value,
+        preferredTime: document.getElementById('consultTime').value,
+        paymentRef: document.getElementById('consultPaymentRef').value.trim(),
+      };
+
+      if (consultationSubmitBtn) {
+        consultationSubmitBtn.disabled = true;
+        consultationSubmitBtn.textContent = 'Submitting...';
+      }
+
+      try {
+        const response = await fetch('/api/consultation-booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'Submission failed. Please try again.');
+        }
+
+        if (consultationFeedback) {
+          consultationFeedback.hidden = false;
+          consultationFeedback.className = 'form-feedback form-feedback--success';
+          consultationFeedback.textContent = result.message;
+        }
+
+        consultationForm.reset();
+
+        if (consultationFields) {
+          consultationFields.hidden = true;
+        }
+      } catch (error) {
+        if (consultationFeedback) {
+          consultationFeedback.hidden = false;
+          consultationFeedback.className = 'form-feedback form-feedback--error';
+          consultationFeedback.textContent = error.message || 'Something went wrong. Please try again.';
+        }
+      } finally {
+        if (consultationSubmitBtn) {
+          consultationSubmitBtn.disabled = false;
+          consultationSubmitBtn.textContent = 'Submit Booking Request';
+        }
+      }
+    });
+  }
 })();

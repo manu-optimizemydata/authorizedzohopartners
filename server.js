@@ -38,6 +38,14 @@ app.get('/case-study.html', (req, res) => {
   res.redirect(301, '/case-study');
 });
 
+app.get('/consultation', (req, res) => {
+  res.sendFile(path.join(__dirname, 'consultation.html'));
+});
+
+app.get('/payment', (req, res) => {
+  res.redirect(301, '/consultation');
+});
+
 app.use(express.static(path.join(__dirname)));
 
 async function brevoRequest(endpoint, body) {
@@ -201,6 +209,118 @@ app.post('/api/contact', async (req, res) => {
     });
   } catch (error) {
     console.error('Contact form error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Something went wrong. Please try again or contact us at manu@optimizemydata.com.',
+    });
+  }
+});
+
+app.post('/api/consultation-booking', async (req, res) => {
+  if (!BREVO_API_KEY) {
+    return res.status(500).json({
+      success: false,
+      message: 'Server configuration error. API key is missing.',
+    });
+  }
+
+  const {
+    name,
+    company,
+    email,
+    phone,
+    requirement,
+    currentTools,
+    preferredDate,
+    preferredTime,
+    paymentRef,
+  } = req.body || {};
+
+  if (!name || !company || !email || !phone || !requirement || !preferredDate || !preferredTime || !paymentRef) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please fill in all required fields including payment reference.',
+    });
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please enter a valid email address.',
+    });
+  }
+
+  const { firstName, lastName } = splitName(name);
+  const normalizedPhone = normalizePhone(phone.trim());
+
+  const contactPayload = {
+    email: email.trim(),
+    updateEnabled: true,
+    attributes: {
+      FIRSTNAME: firstName,
+      LASTNAME: lastName,
+      SMS: normalizedPhone,
+      COMPANY: company.trim(),
+    },
+  };
+
+  if (LIST_ID) {
+    contactPayload.listIds = [LIST_ID];
+  }
+
+  try {
+    const contactResult = await brevoRequest('/contacts', contactPayload);
+
+    const emailPayload = {
+      sender: { name: SENDER_NAME, email: SENDER_EMAIL },
+      to: [{ email: NOTIFY_EMAIL, name: 'Optimize My Data' }],
+      replyTo: { email: email.trim(), name: name.trim() },
+      subject: `Paid Consultation Booking - ${name.trim()} (₹1,250)`,
+      htmlContent: `
+        <h2>New Paid Consultation Booking</h2>
+        <p><strong>Fee:</strong> ₹1,250</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Company:</strong> ${escapeHtml(company)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+        <p><strong>Business Requirement:</strong></p>
+        <p>${escapeHtml(requirement).replace(/\n/g, '<br>')}</p>
+        <p><strong>Current Tools:</strong> ${escapeHtml(currentTools || 'N/A')}</p>
+        <p><strong>Preferred Date:</strong> ${escapeHtml(preferredDate)}</p>
+        <p><strong>Preferred Time:</strong> ${escapeHtml(preferredTime)}</p>
+        <p><strong>Payment Reference / UTR:</strong> ${escapeHtml(paymentRef)}</p>
+      `,
+    };
+
+    const emailResult = await brevoRequest('/smtp/email', emailPayload);
+
+    if (!contactResult.ok && contactResult.status !== 400) {
+      const invalidPhone =
+        contactResult.status === 400 &&
+        contactResult.data?.message?.toLowerCase().includes('phone');
+
+      if (invalidPhone) {
+        delete contactPayload.attributes.SMS;
+        await brevoRequest('/contacts', contactPayload);
+      } else {
+        return res.status(502).json({
+          success: false,
+          message: 'Unable to submit your booking right now. Please try again or email us directly.',
+        });
+      }
+    }
+
+    if (!emailResult.ok) {
+      console.error('Brevo consultation email error:', emailResult.status, emailResult.data);
+    }
+
+    return res.json({
+      success: true,
+      message: 'Thank you! Your booking request has been received. We will verify payment and confirm your Zoho Meeting slot by email.',
+    });
+  } catch (error) {
+    console.error('Consultation booking error:', error);
     return res.status(500).json({
       success: false,
       message: 'Something went wrong. Please try again or contact us at manu@optimizemydata.com.',
