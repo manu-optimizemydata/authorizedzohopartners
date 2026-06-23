@@ -1895,6 +1895,14 @@ body.has-mobile-cta {
   letter-spacing: 0.02em;
 }
 
+.cs-category-card__icon--page {
+  width: 160px;
+  height: 160px;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-lg);
+}
+
 .cs-category-card__title {
   font-size: 22px;
   font-weight: 700;
@@ -3095,6 +3103,25 @@ body.has-mobile-cta {
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 8px;
+}
+
+.consultation-price__taxes {
+  display: block;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.consultation-price--inline .consultation-price__taxes {
+  display: inline;
+  font-size: 0.55em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-left: 0.35em;
+  color: var(--grey);
+  vertical-align: baseline;
 }
 
 .consultation-price--inline .consultation-price__amount {

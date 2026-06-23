@@ -34,6 +34,14 @@ app.get('/case-study/travel-tourism/luxury-travel', (req, res) => {
   res.sendFile(path.join(__dirname, 'case-study', 'travel-tourism', 'luxury-travel.html'));
 });
 
+app.get('/case-study/automobile', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'automobile.html'));
+});
+
+app.get('/case-study/automobile/car-dealer', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'automobile', 'car-dealer.html'));
+});
+
 app.get('/case-study.html', (req, res) => {
   res.redirect(301, '/case-study');
 });
@@ -276,10 +284,10 @@ app.post('/api/consultation-booking', async (req, res) => {
       sender: { name: SENDER_NAME, email: SENDER_EMAIL },
       to: [{ email: NOTIFY_EMAIL, name: 'Optimize My Data' }],
       replyTo: { email: email.trim(), name: name.trim() },
-      subject: `Paid Consultation Booking - ${name.trim()} (₹1,250)`,
+      subject: `Paid Consultation Booking - ${name.trim()} (₹1,250 plus taxes)`,
       htmlContent: `
         <h2>New Paid Consultation Booking</h2>
-        <p><strong>Fee:</strong> ₹1,250</p>
+        <p><strong>Fee:</strong> ₹1,250 plus taxes</p>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Company:</strong> ${escapeHtml(company)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
