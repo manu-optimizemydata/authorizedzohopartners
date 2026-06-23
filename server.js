@@ -6,10 +6,10 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const NOTIFY_EMAIL = process.env.BREVO_NOTIFY_EMAIL || 'manu@optimizemydata.com';
-const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || NOTIFY_EMAIL;
-const SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Optimize My Data Website';
+const BREVO_API_KEY = (process.env.BREVO_API_KEY || '').trim() || null;
+const NOTIFY_EMAIL = (process.env.BREVO_NOTIFY_EMAIL || 'manu@optimizemydata.com').trim();
+const SENDER_EMAIL = (process.env.BREVO_SENDER_EMAIL || NOTIFY_EMAIL).trim();
+const SENDER_NAME = (process.env.BREVO_SENDER_NAME || 'Optimize My Data Website').trim();
 const LIST_ID = process.env.BREVO_LIST_ID ? Number(process.env.BREVO_LIST_ID) : null;
 
 app.use(express.json({ limit: '32kb' }));
@@ -337,4 +337,9 @@ app.post('/api/consultation-booking', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Optimize My Data site running at http://localhost:${PORT}`);
+  if (BREVO_API_KEY) {
+    console.log('Brevo email integration: configured');
+  } else {
+    console.warn('WARNING: BREVO_API_KEY is not set. Contact and consultation forms will fail.');
+  }
 });
