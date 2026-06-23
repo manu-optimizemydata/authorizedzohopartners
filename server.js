@@ -303,24 +303,23 @@ app.post('/api/consultation-booking', async (req, res) => {
 
     const emailResult = await brevoRequest('/smtp/email', emailPayload);
 
-    if (!contactResult.ok && contactResult.status !== 400) {
-      const invalidPhone =
-        contactResult.status === 400 &&
-        contactResult.data?.message?.toLowerCase().includes('phone');
-
-      if (invalidPhone) {
-        delete contactPayload.attributes.SMS;
-        await brevoRequest('/contacts', contactPayload);
-      } else {
-        return res.status(502).json({
-          success: false,
-          message: 'Unable to submit your booking right now. Please try again or email us directly.',
-        });
-      }
-    }
-
     if (!emailResult.ok) {
       console.error('Brevo consultation email error:', emailResult.status, emailResult.data);
+      return res.status(502).json({
+        success: false,
+        message: 'Unable to send your booking right now. Please try again or email manu@optimizemydata.com directly.',
+      });
+    }
+
+    if (!contactResult.ok && contactResult.status !== 400) {
+      console.error('Brevo consultation contact error:', contactResult.status, contactResult.data);
+    } else if (
+      !contactResult.ok &&
+      contactResult.status === 400 &&
+      contactResult.data?.message?.toLowerCase().includes('phone')
+    ) {
+      delete contactPayload.attributes.SMS;
+      await brevoRequest('/contacts', contactPayload);
     }
 
     return res.json({

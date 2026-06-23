@@ -7,6 +7,7 @@
   const navLinks = document.querySelectorAll('.nav__link');
 
   function closeNav() {
+    if (!navToggle || !nav) return;
     navToggle.classList.remove('active');
     nav.classList.remove('active');
     navToggle.setAttribute('aria-expanded', 'false');
@@ -16,6 +17,7 @@
 
   // Header scroll effect
   function handleScroll() {
+    if (!header) return;
     if (window.scrollY > 20) {
       header.classList.add('header--scrolled');
     } else {
@@ -27,6 +29,7 @@
   handleScroll();
 
   // Mobile navigation toggle
+  if (navToggle && nav) {
   navToggle.addEventListener('click', function () {
     const isOpen = nav.classList.toggle('active');
     navToggle.classList.toggle('active', isOpen);
@@ -34,6 +37,7 @@
     document.body.classList.toggle('nav-open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
+  }
 
   // Close mobile nav on link click
   navLinks.forEach(function (link) {
@@ -261,6 +265,14 @@
   const consultationSubmitBtn = document.getElementById('consultationSubmitBtn');
 
   if (consultationForm) {
+    function showConsultationFeedback(type, message) {
+      if (!consultationFeedback) return;
+      consultationFeedback.hidden = false;
+      consultationFeedback.className = 'form-feedback form-feedback--' + type;
+      consultationFeedback.textContent = message;
+      consultationFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
     consultationForm.addEventListener('submit', async function (event) {
       event.preventDefault();
 
@@ -299,29 +311,27 @@
           body: JSON.stringify(payload),
         });
 
-        const result = await response.json();
+        const contentType = response.headers.get('content-type') || '';
+        let result = null;
+
+        if (contentType.includes('application/json')) {
+          result = await response.json();
+        } else {
+          throw new Error('Unable to reach the booking server. Please email manu@optimizemydata.com with your details.');
+        }
 
         if (!response.ok || !result.success) {
           throw new Error(result.message || 'Submission failed. Please try again.');
         }
 
-        if (consultationFeedback) {
-          consultationFeedback.hidden = false;
-          consultationFeedback.className = 'form-feedback form-feedback--success';
-          consultationFeedback.textContent = result.message;
-        }
-
+        showConsultationFeedback('success', result.message);
         consultationForm.reset();
 
         if (consultationFields) {
           consultationFields.hidden = true;
         }
       } catch (error) {
-        if (consultationFeedback) {
-          consultationFeedback.hidden = false;
-          consultationFeedback.className = 'form-feedback form-feedback--error';
-          consultationFeedback.textContent = error.message || 'Something went wrong. Please try again.';
-        }
+        showConsultationFeedback('error', error.message || 'Something went wrong. Please try again or email manu@optimizemydata.com.');
       } finally {
         if (consultationSubmitBtn) {
           consultationSubmitBtn.disabled = false;
