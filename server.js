@@ -50,6 +50,10 @@ app.get('/consultation', (req, res) => {
   res.sendFile(path.join(__dirname, 'consultation.html'));
 });
 
+app.get('/zoho-erp', (req, res) => {
+  res.sendFile(path.join(__dirname, 'zoho-erp.html'));
+});
+
 app.get('/payment', (req, res) => {
   res.redirect(301, '/consultation');
 });
