@@ -42,6 +42,14 @@ app.get('/case-study/automobile/car-dealer', (req, res) => {
   res.sendFile(path.join(__dirname, 'case-study', 'automobile', 'car-dealer.html'));
 });
 
+app.get('/case-study/food-beverage', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'food-beverage.html'));
+});
+
+app.get('/case-study/food-beverage/multi-outlet-restaurant', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'food-beverage', 'multi-outlet-restaurant.html'));
+});
+
 app.get('/case-study.html', (req, res) => {
   res.redirect(301, '/case-study');
 });
