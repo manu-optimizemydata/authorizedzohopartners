@@ -1,0 +1,21 @@
+# Optimize My Data
+
+> Optimize My Data is an Authorized Zoho Partner based in India, helping businesses implement, customize, and support the Zoho suite — including Zoho CRM, Zoho Books, Zoho Inventory, Zoho ERP, and Zoho One. Services include consulting, implementation, data migration (including from Tally), integration, training, and ongoing support.
+
+Optimize My Data works with businesses across multiple industries, including EPC/solar, travel & tourism, automobile dealerships, food & beverage/restaurants, manufacturing, healthcare, retail & e-commerce, education, professional services, and non-profits.
+
+## Pages
+
+- [Home](https://www.optimizemydata.com/): Overview of services, industries served, and Zoho product coverage (CRM, Books, Inventory, One).
+- [Zoho ERP for Manufacturing](https://www.optimizemydata.com/zoho-erp): Zoho-based ERP implementation for manufacturing and multi-plant businesses.
+- [Paid Consultation](https://www.optimizemydata.com/consultation): Structured, paid (₹1,250 plus taxes) Zoho consultation and requirement-capture session.
+- [Case Studies](https://www.optimizemydata.com/case-study): Index of illustrative Zoho implementation case studies by industry.
+  - [EPC / Solar](https://www.optimizemydata.com/case-study/epc/solar)
+  - [Travel & Tourism / Luxury Travel](https://www.optimizemydata.com/case-study/travel-tourism/luxury-travel)
+  - [Automobile / Car Dealer](https://www.optimizemydata.com/case-study/automobile/car-dealer)
+  - [Food & Beverage / Multi-Outlet Restaurant](https://www.optimizemydata.com/case-study/food-beverage/multi-outlet-restaurant)
+
+## Contact
+
+- Phone: +91 78920 64440
+- Email: manu@optimizemydata.com
