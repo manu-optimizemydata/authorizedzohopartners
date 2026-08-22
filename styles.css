@@ -1791,19 +1791,6 @@ body.has-mobile-cta {
   padding-top: 24px;
 }
 
-.cs-category-grid--hub {
-  max-width: 920px;
-  margin: 0 auto;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (max-width: 768px) {
-  .cs-category-grid--hub {
-    grid-template-columns: 1fr;
-    max-width: 520px;
-  }
-}
-
 .cs-category-card__head {
   display: flex;
   align-items: center;
@@ -1896,6 +1883,16 @@ body.has-mobile-cta {
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
   border-color: rgba(43, 167, 69, 0.35);
+}
+
+/* Hub grid (case-study.html): cap card width and center the grid as a
+   block, including any incomplete last row, instead of stretching cards
+   edge-to-edge with repeat(..., 1fr). Declared after the base
+   .cs-category-grid rule above so it reliably wins the cascade (equal
+   specificity, later source order) rather than being silently overridden. */
+.cs-category-grid--hub {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  justify-content: center;
 }
 
 .cs-category-card__icon {
