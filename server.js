@@ -50,6 +50,46 @@ app.get('/case-study/food-beverage/multi-outlet-restaurant', (req, res) => {
   res.sendFile(path.join(__dirname, 'case-study', 'food-beverage', 'multi-outlet-restaurant.html'));
 });
 
+app.get('/case-study/event-management', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'event-management.html'));
+});
+
+app.get('/case-study/event-management/multi-day-conference', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'event-management', 'multi-day-conference.html'));
+});
+
+app.get('/case-study/ecommerce', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'ecommerce.html'));
+});
+
+app.get('/case-study/ecommerce/multi-channel-retail', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'ecommerce', 'multi-channel-retail.html'));
+});
+
+app.get('/case-study/automotive-parts', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'automotive-parts.html'));
+});
+
+app.get('/case-study/automotive-parts/parts-distributor', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'automotive-parts', 'parts-distributor.html'));
+});
+
+app.get('/case-study/real-estate', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'real-estate.html'));
+});
+
+app.get('/case-study/real-estate/property-management', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'real-estate', 'property-management.html'));
+});
+
+app.get('/case-study/logistics', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'logistics.html'));
+});
+
+app.get('/case-study/logistics/multi-location-courier', (req, res) => {
+  res.sendFile(path.join(__dirname, 'case-study', 'logistics', 'multi-location-courier.html'));
+});
+
 app.get('/case-study.html', (req, res) => {
   res.redirect(301, '/case-study');
 });

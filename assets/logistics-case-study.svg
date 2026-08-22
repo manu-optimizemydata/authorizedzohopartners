@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-labelledby="logisticsTitle">
+  <title id="logisticsTitle">Logistics - case study icon</title>
+  <circle cx="130" cy="130" r="130" fill="#E8F5EB"/>
+  <circle cx="130" cy="130" r="72" fill="#FFFFFF" stroke="#2BA745" stroke-width="4"/>
+  <circle cx="130" cy="130" r="46" fill="none" stroke="#E5E7EB" stroke-width="3"/>
+  <g stroke="#F39221" stroke-width="7" fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="68" y="118" width="82" height="48"/>
+    <path d="M150 132 h26 l14 20 v14 h-40 z"/>
+  </g>
+  <circle cx="96" cy="172" r="12" fill="none" stroke="#F39221" stroke-width="6"/>
+  <circle cx="164" cy="172" r="12" fill="none" stroke="#F39221" stroke-width="6"/>
+</svg>
