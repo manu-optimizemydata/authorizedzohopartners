@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-labelledby="traveltourismTitle">
+  <title id="traveltourismTitle">Travel and tourism - paper airplane icon</title>
+  <circle cx="130" cy="130" r="130" fill="#E8F5EB"/>
+  <circle cx="130" cy="130" r="72" fill="#FFFFFF" stroke="#2BA745" stroke-width="4"/>
+  <circle cx="130" cy="130" r="46" fill="none" stroke="#E5E7EB" stroke-width="3"/>
+  <g stroke="#F39221" stroke-width="7" fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M180 92 L80 134 L120 150 Z"/>
+    <path d="M120 150 L152 180 L180 92 Z"/>
+  </g>
+</svg>
