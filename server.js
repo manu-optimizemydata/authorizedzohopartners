@@ -1,18 +1,61 @@
-require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
+const dotenv = require('dotenv');
+
+function envValue(name) {
+  return (process.env[name] || '').trim();
+}
+
+function loadEnvFiles() {
+  const candidates = [
+    path.join(__dirname, '.env'),
+    '/etc/secrets/.env',
+  ];
+
+  dotenv.config({ path: path.join(__dirname, '.env') });
+
+  if (!envValue('BREVO_API_KEY')) {
+    for (const envPath of candidates) {
+      if (fs.existsSync(envPath)) {
+        dotenv.config({ path: envPath, override: true });
+      }
+      if (envValue('BREVO_API_KEY')) {
+        return envPath;
+      }
+    }
+  }
+
+  const secretKeyFile = '/etc/secrets/BREVO_API_KEY';
+  if (!envValue('BREVO_API_KEY') && fs.existsSync(secretKeyFile)) {
+    process.env.BREVO_API_KEY = fs.readFileSync(secretKeyFile, 'utf8').trim();
+    return secretKeyFile;
+  }
+
+  return envValue('BREVO_API_KEY') ? 'process.env' : null;
+}
+
+const envSource = loadEnvFiles();
 
 const express = require('express');
-const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const BREVO_API_KEY = (process.env.BREVO_API_KEY || '').trim() || null;
-const NOTIFY_EMAIL = (process.env.BREVO_NOTIFY_EMAIL || 'manu@optimizemydata.com').trim();
-const SENDER_EMAIL = (process.env.BREVO_SENDER_EMAIL || NOTIFY_EMAIL).trim();
-const SENDER_NAME = (process.env.BREVO_SENDER_NAME || 'Optimize My Data Website').trim();
+const BREVO_API_KEY = envValue('BREVO_API_KEY') || null;
+const NOTIFY_EMAIL = envValue('BREVO_NOTIFY_EMAIL') || 'manu@optimizemydata.com';
+const SENDER_EMAIL = envValue('BREVO_SENDER_EMAIL') || NOTIFY_EMAIL;
+const SENDER_NAME = envValue('BREVO_SENDER_NAME') || 'Optimize My Data Website';
 const LIST_ID = process.env.BREVO_LIST_ID ? Number(process.env.BREVO_LIST_ID) : null;
 
 app.use(express.json({ limit: '32kb' }));
+
+app.get('/api/health', (req, res) => {
+  res.json({
+    ok: true,
+    brevoConfigured: Boolean(BREVO_API_KEY),
+    brevoSource: envSource || 'missing',
+  });
+});
 
 app.get('/case-study', (req, res) => {
   res.sendFile(path.join(__dirname, 'case-study.html'));
@@ -212,7 +255,20 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    const contactResult = await brevoRequest('/contacts', contactPayload);
+    let contactResult = await brevoRequest('/contacts', contactPayload);
+
+    if (
+      !contactResult.ok &&
+      contactResult.status === 400 &&
+      String(contactResult.data?.message || '').toLowerCase().match(/phone|sms/)
+    ) {
+      delete contactPayload.attributes.SMS;
+      contactResult = await brevoRequest('/contacts', contactPayload);
+    }
+
+    if (!contactResult.ok && contactResult.status !== 400) {
+      console.error('Brevo contact error:', contactResult.status, contactResult.data);
+    }
 
     const emailPayload = {
       sender: { name: SENDER_NAME, email: SENDER_EMAIL },
@@ -232,27 +288,6 @@ app.post('/api/contact', async (req, res) => {
 
     const emailResult = await brevoRequest('/smtp/email', emailPayload);
 
-    if (!contactResult.ok && contactResult.status !== 400) {
-      console.error('Brevo contact error:', contactResult.status, contactResult.data);
-
-      const invalidPhone =
-        contactResult.status === 400 &&
-        contactResult.data?.message?.toLowerCase().includes('phone');
-
-      if (invalidPhone) {
-        delete contactPayload.attributes.SMS;
-        const retryResult = await brevoRequest('/contacts', contactPayload);
-        if (!retryResult.ok && retryResult.status !== 204) {
-          console.error('Brevo contact retry error:', retryResult.status, retryResult.data);
-        }
-      } else {
-        return res.status(502).json({
-          success: false,
-          message: 'Unable to submit your enquiry right now. Please try again or email us directly.',
-        });
-      }
-    }
-
     if (!emailResult.ok) {
       console.error('Brevo email error:', emailResult.status, emailResult.data);
       if (contactResult.ok || contactResult.status === 400) {
@@ -261,6 +296,10 @@ app.post('/api/contact', async (req, res) => {
           message: 'Thank you! Your details have been received. Our team will contact you shortly.',
         });
       }
+      return res.status(502).json({
+        success: false,
+        message: 'Unable to submit your enquiry right now. Please try again or email us directly.',
+      });
     }
 
     return res.json({
@@ -387,10 +426,10 @@ app.post('/api/consultation-booking', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Optimize My Data site running at http://localhost:${PORT}`);
   if (BREVO_API_KEY) {
-    console.log('Brevo email integration: configured');
+    console.log(`Brevo email integration: configured (${envSource})`);
   } else {
     console.warn('WARNING: BREVO_API_KEY is not set. Contact and consultation forms will fail.');
   }
