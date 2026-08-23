@@ -5,6 +5,21 @@
   const navToggle = document.getElementById('navToggle');
   const nav = document.getElementById('nav');
   const navLinks = document.querySelectorAll('.nav__link');
+  const mobileNavMq = window.matchMedia('(max-width: 1100px)');
+
+  function placeNav() {
+    if (!nav || !header) return;
+    const headerInner = header.querySelector('.header__inner');
+    if (mobileNavMq.matches) {
+      if (nav.parentElement !== document.body) {
+        document.body.appendChild(nav);
+      }
+      return;
+    }
+    if (headerInner && nav.parentElement !== headerInner) {
+      headerInner.insertBefore(nav, navToggle || null);
+    }
+  }
 
   function closeNav() {
     if (!navToggle || !nav) return;
@@ -29,6 +44,14 @@
   handleScroll();
 
   // Mobile navigation toggle
+  placeNav();
+  if (typeof mobileNavMq.addEventListener === 'function') {
+    mobileNavMq.addEventListener('change', function () {
+      closeNav();
+      placeNav();
+    });
+  }
+
   if (navToggle && nav) {
   navToggle.addEventListener('click', function () {
     const isOpen = nav.classList.toggle('active');

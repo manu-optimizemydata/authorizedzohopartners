@@ -296,10 +296,9 @@ ul {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1200;
   height: var(--header-height);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
+  background: var(--white);
   border-bottom: 1px solid var(--border);
   transition: box-shadow var(--transition);
 }
@@ -2490,26 +2489,30 @@ body.has-mobile-cta {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 999;
+    z-index: 1100;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
+    min-height: calc(100vh - var(--header-height));
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 0;
     background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 24px 32px;
-    transform: translateX(100%);
+    padding: 16px 20px 32px;
+    transform: none;
     opacity: 0;
     visibility: hidden;
-    transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
-    box-shadow: var(--shadow-md);
+    pointer-events: none;
+    transition: opacity var(--transition), visibility var(--transition);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .nav.active {
-    transform: translateX(0);
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .nav__list {
