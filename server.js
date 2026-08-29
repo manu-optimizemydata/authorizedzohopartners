@@ -149,17 +149,26 @@ app.get('/payment', (req, res) => {
   res.redirect(301, '/consultation');
 });
 
-// Static assets have no cache-busting/versioning (same filenames get updated in place — see git
-// history on styles.css/script.js), so this is deliberately a MODERATE cache window, not a long
-// immutable one: real repeat-visit speedup within a browsing session (e.g. clicking through
-// several case-study pages reuses the cached CSS/JS instead of re-fetching each time), without
-// risking a returning visitor being stuck on a stale file for days after a real deploy.
-// `must-revalidate` means once the 1-hour window lapses, the browser properly revalidates via
-// the ETag/Last-Modified express.static already sends, rather than trusting a stale copy.
+// Static assets (CSS/JS/images/fonts) have no cache-busting/versioning (same filenames get
+// updated in place — see git history on styles.css/script.js), so this is deliberately a
+// MODERATE cache window, not a long immutable one: real repeat-visit speedup within a browsing
+// session (e.g. clicking through several case-study pages reuses the cached CSS/JS instead of
+// re-fetching each time), without risking a returning visitor being stuck on a stale file for
+// days after a real deploy. `must-revalidate` means once the 1-hour window lapses, the browser
+// properly revalidates via the ETag/Last-Modified express.static already sends, rather than
+// trusting a stale copy.
+// HTML is explicitly excluded from that window: it's the layer that actually changes on every
+// deploy, so it must always revalidate — otherwise a returning visitor (or anyone testing a
+// fresh deploy) can be served a stale page for up to an hour with no way to tell without a hard
+// refresh.
 app.use(express.static(path.join(__dirname), {
   maxAge: '1h',
-  setHeaders: (res) => {
-    res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache');
+    } else {
+      res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+    }
   }
 }));
 
