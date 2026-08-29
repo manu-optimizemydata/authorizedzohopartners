@@ -149,7 +149,19 @@ app.get('/payment', (req, res) => {
   res.redirect(301, '/consultation');
 });
 
-app.use(express.static(path.join(__dirname)));
+// Static assets have no cache-busting/versioning (same filenames get updated in place — see git
+// history on styles.css/script.js), so this is deliberately a MODERATE cache window, not a long
+// immutable one: real repeat-visit speedup within a browsing session (e.g. clicking through
+// several case-study pages reuses the cached CSS/JS instead of re-fetching each time), without
+// risking a returning visitor being stuck on a stale file for days after a real deploy.
+// `must-revalidate` means once the 1-hour window lapses, the browser properly revalidates via
+// the ETag/Last-Modified express.static already sends, rather than trusting a stale copy.
+app.use(express.static(path.join(__dirname), {
+  maxAge: '1h',
+  setHeaders: (res) => {
+    res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+  }
+}));
 
 async function brevoRequest(endpoint, body) {
   const response = await fetch(`https://api.brevo.com/v3${endpoint}`, {
