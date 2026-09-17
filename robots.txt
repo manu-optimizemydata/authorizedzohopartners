@@ -3,6 +3,9 @@
 User-agent: *
 Allow: /
 
+Disallow: /website-development/mockups
+Disallow: /mockups
+
 # AI answer/search bots (drive citation + referral traffic) — explicitly allowed.
 User-agent: OAI-SearchBot
 Allow: /

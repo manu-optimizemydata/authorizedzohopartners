@@ -145,6 +145,25 @@ app.get('/zoho-erp', (req, res) => {
   res.sendFile(path.join(__dirname, 'zoho-erp.html'));
 });
 
+app.get('/website-development', (req, res) => {
+  res.sendFile(path.join(__dirname, 'website-development.html'));
+});
+
+app.get(['/mockups', '/mockups/'], (req, res) => {
+  res.redirect(301, '/website-development/mockups');
+});
+
+app.use('/website-development/mockups', express.static(path.join(__dirname, 'mockups'), {
+  index: 'index.html',
+  extensions: ['html'],
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+    }
+  },
+}));
+
 app.get('/payment', (req, res) => {
   res.redirect(301, '/consultation');
 });
