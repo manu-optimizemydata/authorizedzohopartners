@@ -1,22 +1,26 @@
 :root {
-  --mint: #7eb892;
-  --mint-bright: #8fd4a4;
-  --mint-dim: rgba(126, 184, 146, 0.14);
+  --mint: #e85d04;
+  --mint-bright: #f48c06;
+  --mint-dim: rgba(232, 93, 4, 0.12);
+  --rani: #c2185b;
+  --teal: #0f766e;
+  --gold: #c9a227;
   --omd-green: #2ba745;
   --omd-orange: #f39221;
-  --ink: #09090b;
-  --ink-2: #111113;
-  --ink-3: #18181b;
-  --line: rgba(255, 255, 255, 0.08);
-  --text: #fafafa;
-  --muted: rgba(250, 250, 250, 0.62);
-  --muted-2: rgba(250, 250, 250, 0.42);
-  --paper: #f4f1ea;
-  --paper-2: #ebe6db;
-  --ink-light: #141413;
+  --ink: #fff6ee;
+  --ink-2: #ffe8d4;
+  --ink-3: #ffffff;
+  --line: rgba(90, 40, 16, 0.12);
+  --text: #2c1810;
+  --muted: rgba(44, 24, 16, 0.68);
+  --muted-2: rgba(44, 24, 16, 0.45);
+  --paper: #fff6ee;
+  --paper-2: #ffe8d4;
+  --ink-light: #2c1810;
   --header-h: 72px;
   --radius: 12px;
   --font: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --display: "Fraunces", "Georgia", serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,13 +47,13 @@ button { font-family: inherit; }
   gap: 16px;
   padding: 8px 20px;
   min-height: 36px;
-  background: #1a1a16;
-  color: #f4f1ea;
+  background: linear-gradient(90deg, #c2185b, #e85d04 45%, #0f766e);
+  color: #fffaf4;
   font-size: 12px;
   letter-spacing: 0.04em;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 0;
 }
-.mock-bar a { color: var(--mint-bright); font-weight: 600; }
+.mock-bar a { color: #fff3c4; font-weight: 600; }
 .mock-bar nav { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .site-header {
@@ -117,12 +121,12 @@ button { font-family: inherit; }
   border: 1px solid transparent;
   cursor: pointer;
 }
-.btn-mint { background: var(--mint); color: #0b1a10; }
-.btn-mint:hover { background: var(--mint-bright); }
+.btn-mint { background: var(--mint); color: #fffaf4; }
+.btn-mint:hover { background: var(--rani); }
 .btn-ghost {
   background: transparent;
-  border-color: rgba(255,255,255,0.22);
-  color: var(--text);
+  border-color: rgba(194, 24, 91, 0.35);
+  color: var(--rani);
 }
 .btn-ghost-dark {
   background: transparent;
@@ -149,7 +153,7 @@ button { font-family: inherit; }
   background: var(--mint);
 }
 
-h1, h2 { letter-spacing: -0.045em; line-height: 0.98; font-weight: 700; }
+h1, h2 { font-family: var(--display); letter-spacing: -0.03em; line-height: 1.02; font-weight: 700; }
 h1 { font-size: clamp(40px, 6.4vw, 72px); max-width: 14ch; }
 h2 { font-size: clamp(32px, 4.4vw, 52px); }
 h2 .accent, h1 .accent { color: var(--mint); }
@@ -168,12 +172,12 @@ h2 .accent, h1 .accent { color: var(--mint); }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-color: #09090b;
+  background-color: #fff1e4;
   background-image:
-    linear-gradient(180deg, rgba(9,9,11,0.28) 0%, rgba(9,9,11,0.55) 42%, rgba(9,9,11,0.92) 100%),
-    url("images/hero-atelier.jpg");
+    linear-gradient(180deg, rgba(255,246,238,0.35) 0%, rgba(255,246,238,0.72) 48%, #fff6ee 100%),
+    url("images/indian-dupattas.jpg");
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 40%;
 }
 .hero-bg::after {
   content: "";
@@ -192,16 +196,15 @@ h2 .accent, h1 .accent { color: var(--mint); }
   top: 14%;
   width: min(38%, 460px);
   aspect-ratio: 3/4;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 2px;
+  border: 4px solid #fff;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 28px 70px rgba(0,0,0,0.4);
+  box-shadow: 0 18px 40px rgba(194, 24, 91, 0.18);
 }
 .hero-visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.88) contrast(0.96);
 }
 .hero-copy { position: relative; z-index: 2; }
 .hero-copy p { max-width: 54ch; color: var(--muted); margin: 22px 0 28px; }
@@ -281,7 +284,6 @@ h2 .accent, h1 .accent { color: var(--mint); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.9);
 }
 .facility-card figcaption {
   display: flex;
@@ -305,9 +307,8 @@ h2 .accent, h1 .accent { color: var(--mint); }
   display: block;
   width: calc(100% + 48px);
   margin: -24px -24px 18px;
-  height: 128px;
+  height: 148px;
   object-fit: cover;
-  filter: saturate(0.86) brightness(0.98);
 }
 .card h3 { font-size: 18px; letter-spacing: -0.03em; margin: 12px 0 8px; }
 .card .kicker {
@@ -350,7 +351,7 @@ h2 .accent, h1 .accent { color: var(--mint); }
   height: 120px;
   object-fit: cover;
   margin-bottom: 16px;
-  filter: saturate(0.85);
+  border-radius: 10px;
 }
 .step { border-top: 1px solid var(--line); padding-top: 18px; }
 .step::before {
@@ -383,17 +384,16 @@ h2 .accent, h1 .accent { color: var(--mint); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.88) brightness(0.92);
 }
 .product::before {
   content: "";
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(9,9,11,0.05) 20%, rgba(9,9,11,0.78) 100%);
+  background: linear-gradient(180deg, transparent 35%, rgba(44, 24, 16, 0.72) 100%);
 }
 .product > * { position: relative; z-index: 2; }
-.product .tag { font-size: 11px; color: var(--mint); letter-spacing: 0.1em; text-transform: uppercase; }
-.product h3 { font-size: 18px; margin: 6px 0; letter-spacing: -0.03em; }
-.product p { font-size: 13px; color: var(--muted); }
+.product .tag { font-size: 11px; color: #ffe08a; letter-spacing: 0.1em; text-transform: uppercase; }
+.product h3 { font-size: 18px; margin: 6px 0; letter-spacing: -0.03em; color: #fffaf4; }
+.product p { font-size: 13px; color: rgba(255,250,244,0.82); }
 
 .cta-band {
   padding: 96px 0;
@@ -401,20 +401,21 @@ h2 .accent, h1 .accent { color: var(--mint); }
   border-top: 1px solid var(--line);
   position: relative;
   overflow: hidden;
-  background: var(--ink);
+  background: #2c1810;
+  color: #fffaf4;
 }
 .cta-band::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(9,9,11,0.88) 0%, rgba(9,9,11,0.62) 55%, rgba(9,9,11,0.4) 100%),
-    url("images/fabric-rolls.jpg") center/cover;
+    linear-gradient(90deg, rgba(44, 24, 16, 0.88) 0%, rgba(194, 24, 91, 0.45) 55%, rgba(232, 93, 4, 0.35) 100%),
+    url("images/indian-dupattas.jpg") center/cover;
   opacity: 0.95;
 }
-.cta-band .wrap { position: relative; z-index: 1; }
-.cta-band h2 { max-width: 16ch; margin-bottom: 12px; }
-.cta-band .lead { margin-bottom: 28px; }
+.cta-band .wrap { position: relative; z-index: 1; color: #fffaf4; }
+.cta-band h2 { max-width: 16ch; margin-bottom: 12px; color: #fffaf4; }
+.cta-band .lead { margin-bottom: 28px; color: rgba(255,250,244,0.78); }
 
 .site-footer {
   border-top: 1px solid var(--line);
@@ -435,24 +436,24 @@ h2 .accent, h1 .accent { color: var(--mint); }
 
 /* Light theme */
 .theme-light {
-  --bg: #f6f3ec;
-  --fg: #141413;
-  --text: #141413;
-  --muted: rgba(20,20,19,0.68);
-  --muted-2: rgba(20,20,19,0.42);
-  --line: rgba(20,20,19,0.1);
-  --ink-2: #efebe2;
+  --bg: #fffaf4;
+  --fg: #2c1810;
+  --text: #2c1810;
+  --muted: rgba(44,24,16,0.68);
+  --muted-2: rgba(44,24,16,0.42);
+  --line: rgba(90, 40, 16, 0.1);
+  --ink-2: #ffe8d4;
   --ink-3: #ffffff;
-  --mint: #2f7a4a;
-  --mint-bright: #3b9159;
+  --mint: #c2185b;
+  --mint-bright: #e85d04;
 }
 .theme-light .site-header { background: rgba(246,243,236,0.86); }
 .theme-light .hero-bg {
   background-image:
-    linear-gradient(180deg, rgba(246,243,236,0.18) 0%, rgba(246,243,236,0.72) 58%, #f6f3ec 100%),
-    url("images/hanging-rail.jpg");
+    linear-gradient(180deg, rgba(255,246,238,0.2) 0%, rgba(255,246,238,0.78) 62%, #fff6ee 100%),
+    url("images/indian-saree-magenta.jpg");
   background-size: cover;
-  background-position: center 40%;
+  background-position: center 20%;
 }
 .theme-light .btn-ghost { color: #141413; border-color: rgba(20,20,19,0.2); }
 .theme-light .cta-band { color: #fafafa; --muted: rgba(250,250,250,0.62); }
@@ -465,15 +466,15 @@ h2 .accent, h1 .accent { color: var(--mint); }
 /* Studio / direction C */
 .theme-studio .hero-bg {
   background-image:
-    linear-gradient(180deg, rgba(9,9,11,0.45) 0%, rgba(9,9,11,0.78) 70%, #09090b 100%),
-    url("images/store.jpg");
+    linear-gradient(180deg, rgba(255,246,238,0.4) 0%, rgba(255,246,238,0.86) 70%, #fff6ee 100%),
+    url("images/indian-lehenga-marigold.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center 25%;
 }
 .products { min-height: 0; }
 .product { min-height: 360px; }
 .form-card {
-  background: rgba(17,17,19,0.9);
+  background: rgba(255,255,255,0.92);
 }
 .theme-studio .hero { min-height: auto; padding: 72px 0 48px; align-items: center; }
 .theme-studio .hero-layout {
@@ -485,17 +486,18 @@ h2 .accent, h1 .accent { color: var(--mint); }
   align-items: center;
 }
 .form-card {
-  background: rgba(17,17,19,0.86);
+  background: rgba(255,255,255,0.94);
   border: 1px solid var(--line);
   padding: 28px;
   backdrop-filter: blur(10px);
+  box-shadow: 0 16px 40px rgba(232, 93, 4, 0.12);
 }
 .form-card h3 { margin-bottom: 6px; letter-spacing: -0.03em; }
 .form-card p { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
 .form-card label { display: block; font-size: 12px; margin: 12px 0 6px; color: var(--muted); }
 .form-card input, .form-card textarea {
   width: 100%;
-  background: #0c0c0e;
+  background: #fff6ee;
   border: 1px solid var(--line);
   color: var(--text);
   padding: 11px 12px;
@@ -504,8 +506,8 @@ h2 .accent, h1 .accent { color: var(--mint); }
 .form-card .btn { width: 100%; justify-content: center; margin-top: 16px; }
 
 .chooser {
-  background: #0e0f10;
-  color: #fafafa;
+  background: linear-gradient(180deg, #fff6ee, #ffe4ef 40%, #e8f6f3);
+  color: var(--text);
   min-height: 100vh;
   padding: 48px 0 80px;
 }
@@ -513,7 +515,7 @@ h2 .accent, h1 .accent { color: var(--mint); }
 .chooser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
 .preview {
   border: 1px solid var(--line);
-  background: #141416;
+  background: #ffffff;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -528,9 +530,12 @@ h2 .accent, h1 .accent { color: var(--mint); }
   background-size: cover;
   background-position: center;
 }
-.thumb-a { background-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.35)), url("images/hero-atelier.jpg"); }
-.thumb-b { background-image: linear-gradient(180deg, transparent, rgba(246,243,236,0.25)), url("images/hanging-rail.jpg"); }
-.thumb-c { background-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.4)), url("images/studio-look.jpg"); }
+.thumb-a { background-image: url("images/indian-saree-magenta.jpg"); }
+.thumb-b { background-image: url("images/indian-lehenga-marigold.jpg"); }
+.thumb-c { background-image: url("images/indian-kurta-teal.jpg"); }
+.color-row { display: flex; gap: 8px; margin: 18px 0 8px; }
+.color-row span { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(44,24,16,0.12); }
+.cta-band .btn-ghost { color: #fffaf4; border-color: rgba(255,250,244,0.45); }
 .mark {
   width: 36px; height: 36px;
   border: 1px solid var(--mint);
