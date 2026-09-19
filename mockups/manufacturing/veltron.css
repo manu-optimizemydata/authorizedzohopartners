@@ -88,6 +88,17 @@ a { color: inherit; text-decoration: none; }
   border-radius: 1px;
 }
 .nav-cta { display: none; }
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  border: 0;
+  padding: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -542,6 +553,8 @@ h2.display {
   }
   .nav a:last-child { border-bottom: 0; }
   .nav-cta { display: block; font-weight: 700; color: var(--navy); }
+  body.nav-open { overflow: hidden; }
+  body.nav-open .nav-backdrop { display: block; }
   .mock-bar { padding: 8px 12px; gap: 8px; }
   .mock-bar nav { gap: 10px; }
   .link-row, .feature-grid, .stats, .split-cards, .people-grid, .grid-3, .foot-grid, .news-row, .contact-layout, .who-grid, .foot-grid.three {
