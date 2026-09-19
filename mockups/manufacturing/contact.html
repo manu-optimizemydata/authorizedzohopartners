@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact · VELTRON</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="veltron.css">
+</head>
+<body>
+  <div class="mock-bar">
+    <strong>MOCKUP · Manufacturing and services</strong>
+    <nav>
+      <a href="../">All categories</a>
+      <a href="index.html">Home</a>
+      <a href="company.html">Company</a>
+      <a href="platforms.html">Platforms</a>
+      <a href="sectors.html">Sectors</a>
+    </nav>
+  </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">VELTRON</a>
+      <nav class="nav">
+        <a href="company.html">Company</a>
+        <a href="platforms.html">Innovation</a>
+        <a href="sectors.html">Sectors</a>
+        <a href="contact.html">Connect</a>
+      </nav>
+      <a class="btn btn-navy" href="contact.html">Start a brief</a>
+    </div>
+  </header>
+
+  <section class="page-hero wrap">
+    <p class="section-label" style="margin-left:0;">Connect</p>
+    <h1>Let’s start the conversation.</h1>
+    <p>Tell us what you need to build, scale, or qualify. We’ll bring the right team. This form is mockup-only — it does not send.</p>
+  </section>
+
+  <section class="section" style="padding-top:8px;padding-bottom:80px;">
+    <div class="wrap contact-layout">
+      <form class="form-card" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Mockup only — form is not live.';">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" required>
+        </div>
+        <div>
+          <label for="company">Company</label>
+          <input id="company" name="company">
+        </div>
+        <div>
+          <label for="need">What do you need?</label>
+          <select id="need" name="need">
+            <option>Laser platform</option>
+            <option>Contract manufacturing</option>
+            <option>Field service</option>
+            <option>Process qualification</option>
+          </select>
+        </div>
+        <div>
+          <label for="msg">Brief</label>
+          <textarea id="msg" name="msg" rows="5"></textarea>
+        </div>
+        <button class="btn btn-navy" type="submit">Send enquiry →</button>
+        <p class="form-note"></p>
+      </form>
+      <div>
+        <div class="card-photo" style="height:220px;"><img src="images/veltron-campus.jpg" alt="VELTRON campus"></div>
+        <p class="lede">Merchandising · Pune · Chennai<br>hello@veltron.example</p>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="wrap"><p class="foot-bottom">Mockup only · Optimize My Data</p></div></footer>
+</body>
+</html>

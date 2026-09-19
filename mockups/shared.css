@@ -513,6 +513,14 @@ h2 .accent, h1 .accent { color: var(--mint); }
 }
 .chooser h1 { max-width: 18ch; margin: 12px 0 16px; }
 .chooser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.chooser.hub {
+  background: #f4f6fb;
+  color: #111827;
+}
+.chooser.hub h1 { max-width: 22ch; }
+.chooser-grid.two { grid-template-columns: repeat(2, 1fr); max-width: 880px; }
+.thumb-textile { background-image: url("images/indian-saree-magenta.jpg"); background-size: cover; background-position: center; }
+.thumb-mfg { background-image: url("manufacturing/images/veltron-laser-cut.jpg"); background-size: cover; background-position: center; }
 .preview {
   border: 1px solid var(--line);
   background: #ffffff;
