@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NILAYA Estates · Real estate mockup</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Manrope:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="estate.css">
+</head>
+<body>
+  <div class="mock-bar">
+    <strong>MOCKUP · Real estate</strong>
+    <nav>
+      <a href="../">All categories</a>
+      <a href="#buildings">Buildings</a>
+      <a href="#ongoing">Ongoing</a>
+      <a href="#featured">Featured</a>
+      <a href="#enquire">Enquire</a>
+    </nav>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="index.html"><span class="mark" aria-hidden="true">N</span><span class="word"><strong>NILAYA</strong><em>Estates</em></span></a>
+      <nav class="nav">
+        <a href="#buildings">Buildings</a>
+        <a href="#ongoing">Ongoing</a>
+        <a href="#featured">Featured</a>
+        <a class="btn" href="#enquire">Enquire</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="hero-slider" id="buildings" data-slider aria-roledescription="carousel" aria-label="Buildings">
+    <div class="slides">
+      <figure class="slide is-on">
+        <img src="images/nilaya-towers.png" alt="Pale stone residential towers with palms in the forecourt">
+        <figcaption>Meru Residences · Whitefield</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="images/nilaya-villa-row.png" alt="A quiet lane of finished stone villas and gardens">
+        <figcaption>Villa lane · Sarjapur</figcaption>
+      </figure>
+    </div>
+    <div class="slider-dots">
+      <button type="button" data-dot class="is-on" aria-label="Show the residential towers" aria-current="true"></button>
+      <button type="button" data-dot aria-label="Show the villa lane"></button>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <p class="kicker">Bengaluru · Villas and houses</p>
+      <h1>Homes with a site you can visit.</h1>
+      <p>NILAYA is a fictional developer for this mockup. The page shows finished buildings, villas still going up, and a short list of houses you can ask about. Nothing here is for sale.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#featured">See featured homes</a>
+        <a class="btn btn-line" href="#ongoing">Ongoing villas</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap band-row">
+      <div><strong>3</strong><span>Live sites around Bengaluru</span></div>
+      <div><strong>Villas</strong><span>Sarjapur and a lane in Coimbatore</span></div>
+      <div><strong>Houses</strong><span>Independent homes, Whitefield</span></div>
+      <div><strong>2026</strong><span>Next handover on the villa frames</span></div>
+    </div>
+  </div>
+
+  <section class="section" id="ongoing">
+    <div class="wrap">
+      <h2>Ongoing projects</h2>
+      <p class="lede">Frames on the ground now. These photographs are the construction slider — villas first, then the house shells.</p>
+    </div>
+    <div class="project-slider" data-slider aria-roledescription="carousel" aria-label="Ongoing projects">
+      <div class="slides">
+        <figure class="slide is-on">
+          <img src="images/nilaya-ongoing-villas.png" alt="Two-storey villa frames with scaffolding on red soil">
+          <figcaption>Villas rising · Sarjapur</figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="images/nilaya-ongoing-houses.png" alt="Independent house shells under construction">
+          <figcaption>House shells · Hoskote</figcaption>
+        </figure>
+      </div>
+      <div class="slider-dots">
+        <button type="button" data-dot class="is-on" aria-label="Show villas under construction" aria-current="true"></button>
+        <button type="button" data-dot aria-label="Show houses under construction"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="featured" style="padding-top:0">
+    <div class="wrap">
+      <h2>Featured projects</h2>
+      <p class="lede">Villas and houses in India. Indicative only — this mockup does not take a booking or a payment.</p>
+      <div class="featured">
+        <article class="project">
+          <img src="images/nilaya-featured-villa.png" alt="A limestone villa with a courtyard pool and teak screens">
+          <div>
+            <em>Villa · Sarjapur</em>
+            <h3>Aranya</h3>
+            <p>Four bedrooms, a shaded court, and a small pool. Ready to walk through.</p>
+          </div>
+        </article>
+        <article class="project">
+          <img src="images/nilaya-featured-house.png" alt="A two-storey white and timber house behind a garden gate">
+          <div>
+            <em>House · Whitefield</em>
+            <h3>Palm</h3>
+            <p>An independent house on a quiet street, with a front garden and a simple gate.</p>
+          </div>
+        </article>
+        <article class="project">
+          <img src="images/nilaya-villa-row.png" alt="Finished villas along a landscaped lane">
+          <div>
+            <em>Villas · Coimbatore</em>
+            <h3>Kaveri Lane</h3>
+            <p>A short row of finished villas, set back from a landscaped lane.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="enquire" style="background:#fff">
+    <div class="wrap form-grid">
+      <div>
+        <h2>Ask about a home.</h2>
+        <p class="lede">Tell us the project and whether you want a villa or a house. This form stays on the page. Nothing is sent.</p>
+      </div>
+      <form>
+        <label>Name<input name="name" required autocomplete="name"></label>
+        <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
+        <label>Interest
+          <select name="interest" required>
+            <option value="">Choose</option>
+            <option>Aranya villa, Sarjapur</option>
+            <option>Palm house, Whitefield</option>
+            <option>Kaveri Lane villas, Coimbatore</option>
+            <option>Ongoing villas, Sarjapur</option>
+            <option>Meru Residences, Whitefield</option>
+          </select>
+        </label>
+        <label>Note<textarea name="note" rows="3" placeholder="Bedrooms, or a day you can visit the site"></textarea></label>
+        <button class="btn" type="submit">Send enquiry</button>
+        <p class="sent" data-sent hidden>Noted on this page only. Nothing was sent.</p>
+        <p class="fine">Mockup form. No site visit is booked.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <span>NILAYA Estates · fictional real-estate mockup</span>
+      <a href="../">Back to all lines of business</a>
+    </div>
+  </footer>
+  <script src="../lob.js"></script>
+  <script>
+    (function () {
+      document.querySelectorAll("[data-slider]").forEach(function (root) {
+        var slides = root.querySelectorAll(".slide");
+        var dots = root.querySelectorAll("[data-dot]");
+        var index = 0;
+        var timer;
+        function show(next) {
+          index = (next + slides.length) % slides.length;
+          slides.forEach(function (slide, i) { slide.classList.toggle("is-on", i === index); });
+          dots.forEach(function (dot, i) {
+            var on = i === index;
+            dot.classList.toggle("is-on", on);
+            if (on) dot.setAttribute("aria-current", "true");
+            else dot.removeAttribute("aria-current");
+          });
+        }
+        function start() {
+          stop();
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          timer = setInterval(function () { show(index + 1); }, 3000);
+        }
+        function stop() { clearInterval(timer); }
+        dots.forEach(function (dot, i) {
+          dot.addEventListener("click", function () { show(i); start(); });
+        });
+        root.addEventListener("mouseenter", stop);
+        root.addEventListener("mouseleave", start);
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) stop();
+          else start();
+        });
+        start();
+      });
+    })();
+  </script>
+</body>
+</html>

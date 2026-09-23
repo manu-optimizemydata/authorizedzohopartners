@@ -26,3 +26,9 @@
   .erp-method__steps{grid-template-columns:1fr}
 }
 .webdev-shot--retail{background:url("/mockups/retail/images/canto-hero.png") center/cover no-repeat}
+@media (min-width:1025px){
+  .cs-category-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:769px) and (max-width:1024px){
+  .cs-category-grid{grid-template-columns:repeat(2,1fr)}
+}
