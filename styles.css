@@ -25,3 +25,4 @@
   .problem-card--wide{grid-column:span 1}
   .erp-method__steps{grid-template-columns:1fr}
 }
+.webdev-shot--retail{background:url("/mockups/retail/images/canto-hero.png") center/cover no-repeat}
