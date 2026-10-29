@@ -33,7 +33,7 @@
   .cs-category-grid{grid-template-columns:repeat(2,1fr)}
 }
 .clients{padding:72px 0 64px;background:var(--white);border-top:1px solid var(--border);overflow:hidden}
-.clients__title{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:40px;color:var(--dark);text-align:left}
+.clients__title{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:40px;color:var(--dark);text-align:center}
 .clients__marquee{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0,black 6%,black 94%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,black 6%,black 94%,transparent 100%)}
 .clients__track{display:flex;width:max-content;align-items:center;animation:clients-scroll 36s linear infinite}
 .clients__marquee:hover .clients__track,.clients__marquee:focus-within .clients__track{animation-play-state:paused}
